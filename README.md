@@ -35,3 +35,4 @@ Exemplo de output:
        3 - coverage report -m
 
       
+Obs: o arquivo '.env' não foi adiconado ao '.gitignore' apenas para facilitar a execução do projeto.
