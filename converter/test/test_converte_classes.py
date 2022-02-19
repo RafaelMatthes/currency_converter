@@ -47,7 +47,6 @@ class ConvertCurrencyClassTestCases(BaseModel):
             response = obj_test.get_exchange_value()
         except Exception as e:
             self.assertEquals(' ABC não é um valor válido para conversão.', str(e))
-        
 
 class ExchangeRequestTestCases(BaseModel):
 
@@ -62,8 +61,7 @@ class ExchangeRequestTestCases(BaseModel):
             response = obj_test._get_value_from_api('TTTT','ADAS')
             self.assertEquals(float, type(float(response)))
         except Exception as e:
-            self.assertEquals('API remota não está disponivel.', str(e))
-
+            self.assertEquals('API de consulta não está disponivel.', str(e))
 
 class CurrencyClassTestCases(BaseModel):
 

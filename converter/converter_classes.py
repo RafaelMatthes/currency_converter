@@ -19,7 +19,7 @@ class ExchangeRequest():
             date,value = data.values()
             return value
 
-        raise Exception('API remota não está disponivel.')
+        raise Exception('API de consulta não está disponivel.')
 
 class CurrencyClass():
     """ Classe com métodos para validação de parametros relacioados a moeda informada """
@@ -54,8 +54,14 @@ class ConvertCurrencyClass(CurrencyClass,ExchangeRequest):
         self.__amount = self.valid_currency_value(amount) 
 
     def __get_exchage_rate(self):
-        """ método que retona a cotação atual da moeda solicitada """
+        """ Método que retona a cotação atual da moeda solicitada """
         return self._get_value_from_api(self.__from_value, self.__to_value)
 
     def get_exchange_value(self):
-        return "{:.2f}".format(round(self.__amount * self.__rate, 2)) 
+        """ Método que retonar o valor da conversão """
+        value = self.__amount * self.__rate
+
+        if value < 0.01:
+            return "{:.6f}".format(value) 
+
+        return "{:.2f}".format(value) 
