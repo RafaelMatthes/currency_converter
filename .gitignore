@@ -1,3 +1,5 @@
 .venv
 endpoint.txt
 projeto_params.txt
+__pycache__
+
