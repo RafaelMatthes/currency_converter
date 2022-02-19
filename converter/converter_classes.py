@@ -8,7 +8,7 @@ class ExchangeRequest():
         self.__header = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36'}
         self.__url = 'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/currency_from/currency_to.json'
 
-    def get_value_from_api(self,currency_from, currency_to):
+    def _get_value_from_api(self,currency_from, currency_to):
         """ Método que irá requisitar a cotação atual da moeda solicitada """
         
         url_aux = self.__url.replace('currency_from', currency_from).replace('currency_to', currency_to)
@@ -55,7 +55,7 @@ class ConvertCurrencyClass(CurrencyClass,ExchangeRequest):
 
     def __get_exchage_rate(self):
         """ método que retona a cotação atual da moeda solicitada """
-        return self.get_value_from_api(self.__from_value, self.__to_value)
+        return self._get_value_from_api(self.__from_value, self.__to_value)
 
     def get_exchange_value(self):
         return "{:.2f}".format(round(self.__amount * self.__rate, 2)) 

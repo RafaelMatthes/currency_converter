@@ -4,7 +4,7 @@ from converter.converter_classes import ConvertCurrencyClass
 
 class CurrencyConverterView(APIView):
 
-   def get(self, request, *args, **kwargs):
+   def get(self, request):
         
         try:
             try:

@@ -54,24 +54,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'setup.wsgi.application'
 
+DATABASES = {
+    'default': {
+        "ENGINE": os.environ.get("POSTGRES_ENGINE"),
+        "NAME": os.environ.get("POSTGRES_DB"),
+        "USER": os.environ.get("POSTGRES_USER"),
+        "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
+        "HOST": os.environ.get("POSTGRES_HOST"),
+        "PORT": os.environ.get("POSTGRES_PORT"),
+    }
+}
+    
+if 'test' in sys.argv or 'test\_coverage' in sys.argv: #Covers regular testing and django-coverage
+    DATABASES = {'default': {}}
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    DATABASES['default']['NAME'] = ':memory:'
+
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         "ENGINE": os.environ.get("POSTGRES_ENGINE"),
-#         "NAME": os.environ.get("POSTGRES_DB"),
-#         "USER": os.environ.get("POSTGRES_USER"),
-#         "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
-#         "HOST": os.environ.get("POSTGRES_HOST"),
-#         "PORT": os.environ.get("POSTGRES_PORT"),
-#     }
-# }
-    
-# if 'test' in sys.argv or 'test\_coverage' in sys.argv: #Covers regular testing and django-coverage
-#     DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-#     DATABASES['default']['NAME'] = ':memory:'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
