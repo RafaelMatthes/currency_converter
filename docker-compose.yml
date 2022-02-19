@@ -1,0 +1,40 @@
+version: '3.0'
+services:   
+    db:
+      image: postgres:12
+      container_name: db
+      environment:
+          - POSTGRES_DB=PostgreSQL
+          - POSTGRES_USER=currency_test
+          - POSTGRES_PASSWORD=currency_pass
+      ports:
+          - 5432:5432
+      networks:
+          - local-network
+
+    # redis:
+    #     image: redis   
+    #     networks:
+    #         - local-network  
+
+    currency-django: 
+        build:
+            context: ./
+            dockerfile: ./docker/Dockerfile
+        env_file:
+            - ./docker/.env
+        volumes:
+            - ./:/currency_django
+        ports:
+            - 8000:8000
+        container_name: currency-django
+        depends_on:
+            - db
+            # - redis
+        networks:
+            - local-network
+        expose:
+            - 8000
+networks:
+    local-network:
+        driver: bridge
