@@ -58,7 +58,7 @@ class ConvertCurrencyClass(CurrencyClass,ExchangeRequest):
         return self._get_value_from_api(self.__from_value, self.__to_value)
 
     def get_exchange_value(self):
-        """ Método que retonar o valor da conversão """
+        """ Método que deve retonar o valor da conversão """
         value = self.__amount * self.__rate
 
         if value < 0.01:

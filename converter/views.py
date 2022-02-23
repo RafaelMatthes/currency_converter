@@ -8,13 +8,13 @@ class CurrencyConverterView(APIView):
         
         try:
             try:
-                val1 = request.GET['from']
-                val2 = request.GET['to']
-                val3 =  request.GET['amount']
+                from_value = request.GET['from']
+                to_value = request.GET['to']
+                amount_value =  request.GET['amount']
             except:
                 raise ValueError('Os parâmetros informados não são suficientes.')
 
-            total = ConvertCurrencyClass(val1,val2,val3)
+            total = ConvertCurrencyClass(from_value,to_value,amount_value)
 
             return Response({
                 'exchange_result' : {
